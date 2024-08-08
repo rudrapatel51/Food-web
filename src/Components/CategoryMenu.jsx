@@ -1,13 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { PiShoppingCartFill } from "react-icons/pi";
 
 const CategoryMenu = ({ selectedCategory, setSelectedCategory }) => {
-    const buttonValue = ["All", "Lunch", "Breakfast", "Dinner", "Snacks"]
+    const buttonValue = ["All", "Lunch", "Breakfast", "Dinner", "Snacks"];
 
     return (
-        <div className='ml-6'>
+        <div className='ml-6 relative'>
             <h3 className='text-xl font-semibold'>
                 Find The Best Food
             </h3>
+
             <div className='my-5 flex gap-3 overflow-x-scroll scroll-smooth lg:overflow-x-hidden'>
                 {
                     buttonValue.map((btn) => (
@@ -24,7 +26,7 @@ const CategoryMenu = ({ selectedCategory, setSelectedCategory }) => {
                 }
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CategoryMenu
+export default CategoryMenu;
