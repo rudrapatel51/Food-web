@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+        onSearch(e.target.value); 
+    };
+
     return (
         <nav className='flex flex-col lg:flex-row justify-between py-3 mx-6 mb-10'>
             <div>
@@ -10,10 +17,18 @@ const Navbar = () => {
                 </h1>
             </div>
             <div>
-                <input type='search' id='' name='search' placeholder='Search Here' autoComplete='off' className='p-3 border border-gray-400 text-sm rounded-lg outline-none w-full lg:w-[25vw]' />
+                <input
+                    type='search'
+                    name='search'
+                    placeholder='Search Here'
+                    autoComplete='off'
+                    className='p-3 border border-gray-400 text-sm rounded-lg outline-none w-full lg:w-[25vw]'
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
             </div>
         </nav>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

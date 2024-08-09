@@ -2,25 +2,14 @@ import React, { useState } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../redux/cartSlice';
-import Cart from './Cart';
-import { PiShoppingCartFill } from "react-icons/pi";
 
 const FoodCart = ({ id, name, price, desc, rating, img }) => {
     const dispatch = useDispatch();
-    const [isCartOpen, setIsCartOpen] = useState(false);
 
     const handleAddToCart = () => {
-        dispatch(addItemToCart({ id, name, price }));
-        setIsCartOpen(true); // Open the cart when an item is added
+        dispatch(addItemToCart({ id, name, price, img }));
     };
 
-    const handleCloseCart = () => {
-        setIsCartOpen(false); // Close the cart
-    };
-
-    const handleCartButtonClick = () => {
-        setIsCartOpen(prevState => !prevState); // Toggle cart visibility
-    };
 
     return (
         <>
@@ -48,14 +37,6 @@ const FoodCart = ({ id, name, price, desc, rating, img }) => {
                     Add to Cart
                 </button>
             </div>
-            <div className='absolute top-20 right-8'>
-                <button
-                    onClick={handleCartButtonClick}
-                    className='p-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-300'>
-                    <PiShoppingCartFill className='text-2xl' />
-                </button>
-            </div>
-            <Cart isOpen={isCartOpen} onClose={handleCloseCart} />
         </>
     );
 };

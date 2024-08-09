@@ -1,12 +1,15 @@
 import React from 'react'
 import Shop from './pages/Shop'
+import { CartProvider } from './Components/context/CartContext'
 
 const App = () => {
-  
+
   return (
-    <div>
-      <Shop />
-    </div>
+    <CartProvider>
+      <div>
+        <Shop />
+      </div>
+    </CartProvider>
   )
 }
 

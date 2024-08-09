@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
-import FoodCart from './FoodCart'
-import FoodData from "../Data/FoodData"
-import CategoryMenu from './CategoryMenu'
+import React, { useState } from 'react';
+import FoodCart from './FoodCart';
+import FoodData from "../Data/FoodData";
+import CategoryMenu from './CategoryMenu';
+import Navbar from './Navbar';
 
 const FoodItems = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All')
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [filteredProducts, setFilteredProducts] = useState(FoodData);
 
     const filteredFoodData = selectedCategory === 'All'
-        ? FoodData
-        : FoodData.filter(food => food.category === selectedCategory)
+        ? filteredProducts
+        : filteredProducts.filter(food => food.category === selectedCategory);
+
+    const handleSearch = (query) => {
+        const filtered = FoodData.filter(product =>
+            product.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredProducts(filtered);
+    };
 
     return (
         <div>
+            <Navbar onSearch={handleSearch} />
             <CategoryMenu
                 selectedCategory={selectedCategory}
                 setSelectedCategory={setSelectedCategory}
@@ -32,7 +42,7 @@ const FoodItems = () => {
                 }
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FoodItems
+export default FoodItems;

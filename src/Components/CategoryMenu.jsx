@@ -1,14 +1,27 @@
 import React from 'react';
 import { PiShoppingCartFill } from "react-icons/pi";
+import { useCart } from './context/CartContext';
 
 const CategoryMenu = ({ selectedCategory, setSelectedCategory }) => {
     const buttonValue = ["All", "Lunch", "Breakfast", "Dinner", "Snacks"];
+    const { toggleCart } = useCart();
 
     return (
-        <div className='ml-6 relative'>
-            <h3 className='text-xl font-semibold'>
-                Find The Best Food
-            </h3>
+        <div className='ml-6 relative lg:mr-8'>
+            <div className='flex justify-between items-center'>
+                <h3 className='text-xl font-semibold'>
+                    Find The Best Food
+                </h3>
+
+                {/* Cart Button - Always on the right of the heading */}
+                <div className='ml-auto'>
+                    <button
+                        onClick={toggleCart}
+                        className='p-2 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors duration-300'>
+                        <PiShoppingCartFill className='text-2xl' />
+                    </button>
+                </div>
+            </div>
 
             <div className='my-5 flex gap-3 overflow-x-scroll scroll-smooth lg:overflow-x-hidden'>
                 {

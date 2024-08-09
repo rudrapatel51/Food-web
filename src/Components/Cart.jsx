@@ -2,19 +2,21 @@ import React from 'react';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard';
+import { useCart } from './context/CartContext';
 
-const Cart = ({ isOpen, onClose }) => {
+const Cart = () => {
     const cartItems = useSelector(state => state.cart.items);
     const totalQuantity = useSelector(state => state.cart.totalQuantity);
+    const { isCartOpen, closeCart } = useCart();
 
     return (
-        <div className={`fixed right-0 top-0 lg:w-[20vw] h-full p-5 bg-white w-full transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 shadow-lg z-50`}>
+        <div className={`fixed right-0 top-0 lg:w-[20vw] h-full p-5 bg-white w-full transform ${isCartOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 shadow-lg z-50`}>
             <div className='flex justify-between items-center'>
                 <span className='text-xl font-bold text-gray-800'>My Orders ({totalQuantity})</span>
                 <IoIosCloseCircle
                     className='border-2 border-gray-600 text-gray-600 font-bold p-1 text-xl rounded-md hover:text-red-300 hover:border-red-300 cursor-pointer'
-                    onClick={onClose}
-                />
+                    onClick={closeCart}
+                />  
             </div>
 
             <div className='mt-5'>
@@ -26,6 +28,7 @@ const Cart = ({ isOpen, onClose }) => {
                             name={item.name}
                             price={item.price}
                             quantity={item.quantity}
+                            img={item.img}
                         />
                     ))
                 ) : (
