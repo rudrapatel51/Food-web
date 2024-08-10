@@ -3,7 +3,7 @@ import { PiShoppingCartFill } from "react-icons/pi";
 import { useCart } from './context/CartContext';
 
 const CategoryMenu = ({ selectedCategory, setSelectedCategory }) => {
-    const buttonValue = ["All", "Lunch", "Breakfast", "Dinner", "Snacks"];
+    const buttonValue = ["All", "Lunch", "Breakfast", "Dinner", "Snacks", "feature"];
     const { toggleCart } = useCart();
 
     return (

@@ -5,6 +5,9 @@ import Cart from '../Components/Cart'
 const Shop = () => {
     return (
         <div>
+            <br />
+            <br />
+            <br />
             <FoodItems />
             <Cart />
         </div>
