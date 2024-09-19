@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../redux/cartSlice';
+
 const FoodCart = ({ id, name, price, desc, rating, img }) => {
     const dispatch = useDispatch();
 
