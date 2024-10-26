@@ -3,6 +3,8 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard';
 import { useCart } from './context/CartContext';
+import { clearCart } from '../redux/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const CheckoutModal = ({ isOpen, onClose, cartItems, onPlaceOrder }) => {
   const [customerName, setCustomerName] = useState('');
@@ -16,7 +18,7 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, onPlaceOrder }) => {
       customerName,
       address,
       phone,
-      items: cartItems,
+      items: [cartItems],
       totalAmount: cartItems.reduce((total, item) => total + item.totalPrice, 0),
       orderDate: new Date(),
       status: 'pending'
@@ -37,18 +39,21 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, onPlaceOrder }) => {
         setCustomerName('');
         setAddress('');
         setPhone('');
-        onClose();
+        onClose(  );
       }
     } catch (error) {
       console.error('Error placing order:', error);
     }
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div open={isOpen} onClose={onClose}>
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <div className="bg-white p-6 rounded-lg shadow-xl w-96 max-w-[90%] max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center mb-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
+    <div className="flex min-h-full items-center justify-center p-4">
+      <div className="relative bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+        <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Checkout Details</h2>
             <IoIosCloseCircle
               className="text-gray-600 hover:text-red-500 cursor-pointer text-xl"
@@ -130,15 +135,17 @@ const Cart = () => {
   const totalQuantity = useSelector(state => state.cart.totalQuantity);
   const { isCartOpen, closeCart } = useCart();
   const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+  const dispatch = useDispatch()
 
   const handleCheckout = () => {
     setIsCheckoutModalOpen(true);
   };
 
   const handleOrderPlaced = (orderId) => {
-    // You can dispatch an action here to clear the cart
-    console.log(`Order placed successfully! Order ID: ${orderId}`);
-    // Show success notification
+    dispatch(clearCart()); 
+    setIsCheckoutModalOpen(false); 
+    closeCart(); 
+    navigate('/shop');
     alert('Order placed successfully!');
   };
 

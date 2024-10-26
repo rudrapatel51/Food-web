@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from './pages/Home';
 import Layout from './layout/Layout';
+import Orders from './Components/cartComponent/Orders';
 
 
 
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="Shop" element={<Shop />} />
+            <Route path="/admin/order" element={<Orders />} />
           </Route>
         </Routes>
       </BrowserRouter>
