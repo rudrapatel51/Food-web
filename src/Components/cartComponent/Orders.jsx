@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, RefreshCw, ChevronDown, Eye, Package } from 'lucide-react';
+import API from '../../api/api';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -20,37 +21,30 @@ const Orders = () => {
     { value: 'delivered', label: 'Delivered' },
     { value: 'cancelled', label: 'Cancelled' }
   ];
-
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `http://localhost:3000/api/admin/orders?page=${page}&status=${status}`
-      );
-      const data = await response.json();
-      setOrders(data.orders);
-      setTotalPages(data.totalPages);
+      const response = await API.get(`/admin/orders`, {
+        params: { page, status },
+      });
+      const { orders, totalPages } = response.data;
+      setOrders(orders);
+      setTotalPages(totalPages);
     } catch (error) {
       console.error('Error fetching orders:', error);
     } finally {
       setLoading(false);
     }
   };
-
+  
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
       setUpdateLoading(orderId);
-      await fetch(`http://localhost:3000/api/admin/orders/${orderId}/status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          status: newStatus,
-          note: `Status updated to ${newStatus} by admin`
-        })
+      await API.put(`/admin/orders/${orderId}/status`, {
+        status: newStatus,
+        note: `Status updated to ${newStatus} by admin`,
       });
-      await fetchOrders();
+      await fetchOrders(); 
     } catch (error) {
       console.error('Error updating order status:', error);
     } finally {

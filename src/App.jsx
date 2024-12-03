@@ -6,6 +6,8 @@ import ReactDOM from "react-dom/client";
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import Orders from './Components/cartComponent/Orders';
+import Login from './adminAuth/Login';
+import Register from './adminAuth/Register';
 
 
 
@@ -18,6 +20,8 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="Shop" element={<Shop />} />
+            <Route path="/register/admin" element={<Register />} />
+            <Route path="/login/admin" element={<Login />} />
             <Route path="/admin/order" element={<Orders />} />
           </Route>
         </Routes>
