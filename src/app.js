@@ -1,9 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const orderRoutes = require('./routes/orderRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-const adminAuthRoutes = require("./routes/adminAuthRoutes")
+import express from 'express'
+import cors from 'cors'
+import mongoose from 'mongoose'
+import orderRoutes from './routes/orderRoutes.js'
+import adminRoutes from './routes/adminRoutes.js'
+import adminAuthRoutes from "./routes/adminAuthRoutes.js"
 
 const app = express();
 
@@ -23,4 +23,4 @@ mongoose.connect("mongodb+srv://johnpatel:swArg1lZ5Iw6btp5@backend.sqelu.mongodb
 .then(() => console.log('Connected to MongoDB'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
-module.exports = app;
+export default app

@@ -1,6 +1,6 @@
-const express = require('express');
-const Order = require('../models/Order');
-const verifyToken = require('../middleware/authMiddleware');
+import express from 'express'
+import Order from '../models/Order.js'
+import verifyToken from '../middleware/authMiddleware.js'
 
 const router = express.Router();
 
@@ -72,4 +72,4 @@ router.put('/orders/:id/status',verifyToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

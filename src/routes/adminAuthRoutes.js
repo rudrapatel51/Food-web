@@ -1,6 +1,6 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const Admin = require('../models/admin');
+import express from 'express'
+import jwt from 'jsonwebtoken'
+import Admin from '../models/admin.js'
 
 const router = express.Router();
 const JWT_SECRET = 'c8ff8b996787be658b929d56182f18362b6f864a0b9c9443aab9afb4b87598763b8e67b8df59fd64268ef906a5e5e01197f377ead577226bc23bfa8ae4efe8df'; 
@@ -47,4 +47,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

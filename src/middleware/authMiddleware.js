@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt  from 'jsonwebtoken'
 const JWT_SECRET = 'c8ff8b996787be658b929d56182f18362b6f864a0b9c9443aab9afb4b87598763b8e67b8df59fd64268ef906a5e5e01197f377ead577226bc23bfa8ae4efe8df'; 
 
 const verifyToken = (req, res, next) => {
@@ -16,4 +16,4 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;
