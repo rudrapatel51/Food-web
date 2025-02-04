@@ -16,8 +16,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin/auth', adminAuthRoutes);
 
-// MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/ecommerce', {
+mongoose.connect("mongodb+srv://johnpatel:swArg1lZ5Iw6btp5@backend.sqelu.mongodb.net/youtube", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
