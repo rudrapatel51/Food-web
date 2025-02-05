@@ -4,7 +4,7 @@ import FoodData from "../Data/FoodData";
 import CategoryMenu from './CategoryMenu';
 import Navbar from './Navbar';
 
-const FoodItems = () => {
+const   FoodItems = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [filteredProducts, setFilteredProducts] = useState(FoodData);
 

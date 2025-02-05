@@ -2,12 +2,14 @@ import React from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../redux/cartSlice';
+import {  toast } from 'react-toastify';
 
 const FoodCart = ({ id, name, price, desc, rating, img }) => {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
         dispatch(addItemToCart({ id, name, price, img }));
+        toast.success("Product Added To Cart!")
     };
 
 
