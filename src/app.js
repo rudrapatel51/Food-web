@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import orderRoutes from './routes/orderRoutes.js'
+import orderRoutes from '../src/routes/orderRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import adminAuthRoutes from "./routes/adminAuthRoutes.js"
 
