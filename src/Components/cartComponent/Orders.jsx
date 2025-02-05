@@ -153,12 +153,21 @@ const Orders = () => {
                   onClick={() => setIsStatusOpen(!isStatusOpen)}
                   className="flex items-center justify-between w-44 px-4 py-2 text-sm bg-white text-blue-900 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white transition-colors duration-200"
                 >
-                  <div className="flex items-center gap-2">
-                    {/* {statusOptions.find(opt => opt.value === status)?.icon && (
-                      <statusOptions.find(opt => opt.value === status).icon className="w-4 h-4" />
-                    )} */}
-                    <span>{statusOptions.find(opt => opt.value === status)?.label || 'Filter by status'}</span>
-                  </div>
+                 <div className="flex items-center gap-2">
+  {(() => {
+    const selectedStatus = statusOptions.find(opt => opt.value === status);
+    if (selectedStatus) {
+      return (
+        <>
+          {selectedStatus.icon && <selectedStatus.icon className="w-4 h-4" />}
+          <span>{selectedStatus.label}</span>
+        </>
+      );
+    }
+    return <span>Filter by status</span>;
+  })()}
+</div>
+
                   <ChevronDown className="w-4 h-4 ml-2" />
                 </button>
                 {isStatusOpen && (
